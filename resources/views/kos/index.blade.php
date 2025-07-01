@@ -1,54 +1,64 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>BookingKos.id - Cari Kos Mudah</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+@extends('layouts.frontend')
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="/">BookingKos.id</a>
+@section('title', 'Daftar Kos')
 
-        <div class="ms-auto">
-            @if(Auth::check())
-                <span class="text-white me-2">Hai, {{ Auth::user()->name }} ({{ Auth::user()->role }})</span>
-                <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-                    @csrf
-                    <button class="btn btn-outline-light btn-sm">Logout</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Login</a>
-            @endif
+@section('content')
+<div class="container-xl py-5">
+    <h3 class="mb-2 fw-bold text-success">Daftar Kos Tersedia</h3>
+    <p class="text-muted mb-4">Temukan kos idamanmu dengan mudah dan cepat hanya di <strong>BookingKos.id</strong></p>
+
+    <!-- Form Pencarian -->
+    <form method="GET" action="{{ route('kos.index') }}" class="row g-3 mb-4 align-items-center">
+        <div class="col-md-5">
+            <input type="text" name="keyword" class="form-control" placeholder="Cari nama/alamat kos..."
+                value="{{ request('keyword') }}">
         </div>
-    </div>
-</nav>
+        <div class="col-md-3">
+            <select name="tipe_penghuni" class="form-select">
+                <option value="">-- Semua Tipe --</option>
+                <option value="Putra" {{ request('tipe_penghuni') == 'Putra' ? 'selected' : '' }}>Putra</option>
+                <option value="Putri" {{ request('tipe_penghuni') == 'Putri' ? 'selected' : '' }}>Putri</option>
+                <option value="Campur" {{ request('tipe_penghuni') == 'Campur' ? 'selected' : '' }}>Campur</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">Cari</button>
+        </div>
+    </form>
 
-<div class="container py-4">
-    <h3 class="mb-4">Daftar Kos Tersedia</h3>
+    <!-- List Kos -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @forelse($kos as $item)
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="{{ asset('storage/' . $item->gambar_utama) }}" class="card-img-top rounded-top"
+                    alt="gambar kos" style="height: 220px; object-fit: cover;">
 
-    <div class="row">
-        @foreach($kos as $item)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="{{ asset('storage/' . $item->gambar_utama) }}" class="card-img-top" alt="gambar kos">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->nama_kos }}</h5>
-                        <p class="card-text">{{ $item->alamat }}</p>
-                        <p class="card-text"><strong>Rp{{ number_format($item->harga, 0, ',', '.') }}/bulan</strong></p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-1 fw-bold text-dark">{{ $item->nama_kos }}</h5>
+                    <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> {{ $item->alamat }}</p>
+                    <p class="mb-3 fw-semibold text-success">Rp{{ number_format($item->harga, 0, ',', '.') }}/bulan</p>
 
-                        @if(Auth::check() && Auth::user()->role === 'user')
-                            <a href="{{ route('kos.show', $item->id) }}" class="btn btn-primary w-100">Lihat Detail</a>
-                        @else
-                            <a href="{{ route('login') }}" class="btn btn-secondary w-100">Login untuk Lihat Detail</a>
-                        @endif
+                    <div class="mt-auto">
+                        <a href="{{ route('kos.detail', $item->id) }}" class="btn btn-success w-100">
+                            <i class="bi bi-eye"></i> Lihat Detail
+                        </a>
                     </div>
                 </div>
             </div>
-        @endforeach
+        </div>
+        @empty
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                Tidak ada kos yang ditemukan.
+            </div>
+        </div>
+        @endforelse
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-5 d-flex justify-content-center">
+        {{ $kos->withQueryString()->links('pagination::bootstrap-5') }}
     </div>
 </div>
-
-</body>
-</html>
+@endsection

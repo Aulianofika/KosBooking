@@ -20,5 +20,11 @@ class AuliaUserSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'role' => 'admin'
         ]);
+        AuliaUser::create([
+            'name' => 'Pengunjung Aulia',
+            'email' => 'fika@gmail.com',
+            'password' => Hash::make('user123'),
+            'role' => 'user',
+        ]);
     }
 }

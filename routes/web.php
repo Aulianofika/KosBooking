@@ -9,29 +9,24 @@ use App\Http\Controllers\KosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\UserKosController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KamarGalleryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//homepage
+Route::get('/', [UserKosController::class, 'index'])->name('homepage');
+Route::get('/kos/{id}', [UserKosController::class, 'show'])->name('kos.detail');
+Route::get('/kos', [UserKosController::class, 'index'])->name('kos.index');
 
+//auth
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::middleware([RoleAdmin::class])->group(function () {
-    
-    //untuk admin
-Route::middleware([RoleAdmin::class])->group(function () {
-    Route::get('/admin', fn() => view('admin.dashboard'));
-}); 
 
-//untuk tambah
-Route::get('/admin/dashboard', function () {
-    $totalKos = AuliaKos::count();
-    $totalKamar = AuliaKamar::count();
-    $totalGambar = AuliaGallery::count();
-    return view('admin.dashboard', compact('totalKos', 'totalKamar', 'totalGambar'));
-})->name('admin.dashboard');
+
+Route::middleware([RoleAdmin::class])->group(function () {  
+//untuk admin
+
 
 Route::resource('/admin/kos', KosController::class)->names([
         'index' => 'admin.kos.index',
