@@ -26,7 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware([RoleAdmin::class])->group(function () {  
 //untuk admin
-
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::resource('/admin/kos', KosController::class)->names([
         'index' => 'admin.kos.index',
