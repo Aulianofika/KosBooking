@@ -32,9 +32,12 @@ class UserKosController extends Controller
 
     public function show($id)
     {
-        if (!Auth::check() || Auth::user()->role === 'admin') {
-        return redirect('/login')->with('error', 'Silakan login sebagai pengguna untuk melihat detail.');
+        if (!Auth::check() || !in_array(Auth::user()->role, ['user', 'admin'])) {
+        return redirect()->route('login')->with('error', 'Silakan login untuk melihat detail ya.');
     }
+    //     if (!Auth::check() || Auth::user()->role === 'admin') {
+    //     return redirect('/login')->with('error', 'Silakan login sebagai pengguna untuk melihat detail.');
+    // }
         $kos = AuliaKos::with('kamar')->findOrFail($id);
         $galleries = $kos->galleries;
         
