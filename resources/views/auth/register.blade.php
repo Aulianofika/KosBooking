@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login | BookingKos.id</title>
+    <title>Register | BookingKos.id</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap & Icons -->
@@ -19,17 +19,17 @@
             min-height: 100vh;
         }
 
-        .card-login {
+        .card-register {
             background: #fff;
             border-radius: 1rem;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             padding: 2.5rem;
             width: 100%;
-            max-width: 450px;
+            max-width: 480px;
             animation: fadeIn 0.7s ease;
         }
 
-        .login-title {
+        .register-title {
             font-weight: 700;
             font-size: 1.8rem;
             color: #2c3e50;
@@ -78,23 +78,35 @@
 </head>
 <body>
 
-    <div class="card-login">
-        <h3 class="login-title">Selamat Datang </h3>
+    <div class="card-register">
+        <h3 class="register-title">Daftar Akun</h3>
 
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach($errors->all() as $err)
+                        <li>{{ $err }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <form action="/login" method="POST">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+
+            <div class="mb-3 icon-input">
+                <label class="form-label">Nama</label>
+                <i data-lucide="user"></i>
+                <input type="text" name="name" class="form-control" required placeholder="Nama lengkap">
+            </div>
 
             <div class="mb-3 icon-input">
                 <label class="form-label">Email</label>
                 <i data-lucide="mail"></i>
-                <input type="email" name="email" class="form-control" required placeholder="contoh@email.com">
+                <input type="email" name="email" class="form-control" required placeholder="alamat@email.com">
             </div>
 
             <div class="mb-3 icon-input">
@@ -103,12 +115,18 @@
                 <input type="password" name="password" class="form-control" required placeholder="********">
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 mt-3">Masuk</button>
+            <div class="mb-3 icon-input">
+                <label class="form-label">Konfirmasi Password</label>
+                <i data-lucide="lock"></i>
+                <input type="password" name="password_confirmation" class="form-control" required placeholder="********">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Daftar</button>
         </form>
 
         <p class="text-center mt-4 mb-0 text-muted">
-            Belum punya akun?
-            <a href="{{ route('register') }}" class="text-decoration-none fw-semibold">Daftar sekarang</a>
+            Sudah punya akun?
+            <a href="{{ route('login') }}" class="text-decoration-none fw-semibold">Login sekarang</a>
         </p>
     </div>
 

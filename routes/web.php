@@ -19,6 +19,10 @@ Route::get('/kos/{id}', [UserKosController::class, 'show'])->name('kos.detail');
 Route::get('/kos', [UserKosController::class, 'index'])->name('kos.index');
 
 //auth
+// Form register
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+// Proses register
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

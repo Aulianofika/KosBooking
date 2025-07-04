@@ -30,7 +30,7 @@
 
         <!-- Kolom Pilihan Tipe Penghuni -->
         <div class="col-md-3">
-            <label for="tipe_penghuni" class="form-label fw-semibold text-secondary">Tipe Penghuni</label>
+            <label for="tipe_penghuni" class="form-label fw-semibold text-secondary">Kategori</label>
             <select name="tipe_penghuni" id="tipe_penghuni" class="form-select">
                 <option value="">-- Semua Tipe --</option>
                 <option value="Putra" {{ request('tipe_penghuni') == 'Putra' ? 'selected' : '' }}>Putra</option>
