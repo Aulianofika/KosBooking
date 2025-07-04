@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow border">
-    <h2 class="text-xl font-semibold mb-4">Galeri Kamar: {{ $kamar->nama_kamar }}</h2>
+    <h2 class="text-2xl font-semibold mb-4">Galeri Kamar: {{ $kamar->nama_kamar }}</h2>
 
     @if (session('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 p-2 rounded mb-4">

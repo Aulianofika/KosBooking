@@ -5,7 +5,7 @@
 
     <a href="{{ route('admin.kamar.create') }}" class="btn btn-primary mb-3">➕ Tambah Kamar</a>
 
-    <table class="table table-bordered bg-white">
+    <table class="table table-bordered table-striped bg-white rounded-xl overflow-hidden">
         <thead class="table-dark">
             <tr>
                 <th>Nama Kamar</th>

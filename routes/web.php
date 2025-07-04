@@ -15,8 +15,6 @@ use App\Http\Controllers\KamarGalleryController;
 
 //homepage
 Route::get('/', [UserKosController::class, 'index'])->name('homepage');
-Route::get('/kos/{id}', [UserKosController::class, 'show'])->name('kos.detail');
-Route::get('/kos', [UserKosController::class, 'index'])->name('kos.index');
 
 //auth
 // Form register
@@ -30,6 +28,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //untuk admin
 Route::middleware([RoleAdmin::class])->group(function () {  
 
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::resource('/admin/kos', KosController::class)->names([
