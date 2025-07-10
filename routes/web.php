@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KamarController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserKosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KamarGalleryController;
+use App\Http\Controllers\AdminPemesananController;
 
 //homepage
 Route::get('/', [UserKosController::class, 'index'])->name('homepage');
@@ -61,4 +63,10 @@ Route::post('/admin/kamar/{kamar_id}/galeri', [KamarGalleryController::class, 's
 Route::delete('/admin/kamar-galeri/{id}', [KamarGalleryController::class, 'destroy'])->name('admin.kamar.galeri.destroy');
 
 
+});
+
+// Booking
+Route::middleware(['auth'])->group(function () {
+    Route::post('/booking/{kamar_id}', [BookingController::class, 'store'])->name('booking.store');
+Route::get('/riwayat-booking', [BookingController::class, 'riwayat'])->name('riwayat.booking');
 });
