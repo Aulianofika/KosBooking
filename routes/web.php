@@ -62,6 +62,9 @@ Route::get('/admin/kamar/{kamar_id}/galeri', [KamarGalleryController::class, 'in
 Route::post('/admin/kamar/{kamar_id}/galeri', [KamarGalleryController::class, 'store'])->name('admin.kamar.galeri.store');
 Route::delete('/admin/kamar-galeri/{id}', [KamarGalleryController::class, 'destroy'])->name('admin.kamar.galeri.destroy');
 
+// Admin pemesanan
+Route::get('/admin/pemesanan', [AdminPemesananController::class, 'index'])->name('admin.pemesanan.index');
+Route::post('/admin/pemesanan/{id}/status', [AdminPemesananController::class, 'updateStatus'])->name('admin.pemesanan.updateStatus');
 
 });
 
