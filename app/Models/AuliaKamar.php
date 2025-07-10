@@ -19,4 +19,8 @@ class AuliaKamar extends Model
     {
         return $this->hasMany(AuliaKamarGallery::class, 'kamar_id');
     }
+    public function bookings() 
+    {
+        return $this->hasMany(AuliaBooking::class, 'kamar_id');
+    }
 }

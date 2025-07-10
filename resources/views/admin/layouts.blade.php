@@ -66,8 +66,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="/admin/gallery" class="nav-link text-white px-3 py-2 rounded hover:bg-toska-hover">
-              <i class="bi bi-images me-2"></i> Galeri Kos
+            <a href="/admin/pemesanan" class="nav-link text-white px-3 py-2 rounded hover:bg-toska-hover">
+              <i class="bi bi-images me-2"></i> Pemesanan
             </a>
           </li>
 
