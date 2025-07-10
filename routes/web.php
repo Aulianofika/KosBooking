@@ -42,17 +42,12 @@ Route::resource('/admin/kos', KosController::class)->names([
         'destroy' => 'admin.kos.destroy'
     ]);
 
-Route::middleware(['auth', RoleAdmin::class])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
+Route::middleware(['auth', RoleAdmin::class])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/gallery/{kos_id}', [GalleryController::class, 'index'])->name('gallery.index');
         Route::post('/gallery/{kos_id}', [GalleryController::class, 'store'])->name('gallery.store');
         Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
-    });
-
-Route::middleware(['auth', RoleAdmin::class])->prefix('admin')->name('admin.')->group(function () {
-    // Data Kamar
+    
+// Data Kamar
     Route::get('/kamar', [KamarController::class, 'index'])->name('kamar.index');
     Route::get('/kamar/create', [KamarController::class, 'create'])->name('kamar.create');
     Route::post('/kamar', [KamarController::class, 'store'])->name('kamar.store');
@@ -64,7 +59,6 @@ Route::middleware(['auth', RoleAdmin::class])->prefix('admin')->name('admin.')->
 Route::get('/admin/kamar/{kamar_id}/galeri', [KamarGalleryController::class, 'index'])->name('admin.kamar.galeri.index');
 Route::post('/admin/kamar/{kamar_id}/galeri', [KamarGalleryController::class, 'store'])->name('admin.kamar.galeri.store');
 Route::delete('/admin/kamar-galeri/{id}', [KamarGalleryController::class, 'destroy'])->name('admin.kamar.galeri.destroy');
-
 
 
 });
