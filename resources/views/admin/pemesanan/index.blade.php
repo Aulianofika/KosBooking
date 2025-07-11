@@ -1,84 +1,10 @@
-@extends('admin.layouts') 
+@extends('admin.layouts')
+
+@section('page-title', 'Manajemen Pemesanan')
+
 @section('content')
-
-<style>
-    .section-title {
-        font-size: 1.75rem;
-        font-weight: bold;
-        color: #7e57c2; /* Ungu pastel */
-        text-align: center;
-        margin-bottom: 30px;
-        border-bottom: 2px solid #e1bee7;
-        padding-bottom: 10px;
-        position: relative;
-    }
-
-    .section-title::after {
-        content: "💜💌";
-        position: absolute;
-        right: 10px;
-        font-size: 1.2rem;
-    }
-
-    .table-purple thead {
-        background-color: #ede7f6 !important; /* Ungu muda */
-    }
-
-    .table-purple th {
-        color: #6a1b9a;
-        text-align: center;
-    }
-
-    .badge-status {
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-    }
-
-    .badge-pending {
-        background-color: #e0d7f3;
-        color: #6a1b9a;
-    }
-
-    .badge-diterima {
-        background-color: #d0f0e0;
-        color: #388e3c;
-    }
-
-    .badge-ditolak {
-        background-color: #f9d6e2;
-        color: #c62828;
-    }
-
-    .btn-update {
-        background-color: #ba68c8;
-        color: white;
-        border: none;
-        font-size: 0.8rem;
-        padding: 4px 10px;
-        border-radius: 8px;
-    }
-
-    .btn-update:hover {
-        background-color: #9c27b0;
-    }
-
-    .form-select-sm {
-        border-color: #e1bee7;
-    }
-
-    .img-bukti {
-        border: 2px solid #d1c4e9;
-        border-radius: 6px;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: #faf7fc;
-    }
-</style>
-
-<div class="container mt-4">
-    <h2 class="section-title">Manajemen Pemesanan Kos</h2>
+<div class="container">
+    <h2 class="section-title"></h2>
 
     @if(session('success'))
         <div class="alert alert-success text-center">{{ session('success') }}</div>
@@ -88,12 +14,12 @@
         <table class="table table-bordered table-striped table-purple align-middle">
             <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Kos / Kamar</th>
-                    <th>Tanggal</th>
-                    <th>Bukti</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
+                    <th><i class="bi bi-person-fill me-1"></i> User</th>
+                    <th><i class="bi bi-house-fill me-1"></i> Kos / Kamar</th>
+                    <th><i class="bi bi-calendar-event me-1"></i> Tanggal</th>
+                    <th><i class="bi bi-receipt me-1"></i> Bukti</th>
+                    <th><i class="bi bi-patch-check me-1"></i> Status</th>
+                    <th class="text-center"><i class="bi bi-sliders me-1"></i> Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,7 +37,10 @@
                     <td class="text-center">
                         @if($b->bukti_transaksi)
                             <a href="{{ asset('storage/' . $b->bukti_transaksi) }}" target="_blank">
-                                <img src="{{ asset('storage/' . $b->bukti_transaksi) }}" class="img-thumbnail img-bukti" width="70">
+                                <img src="{{ asset('storage/' . $b->bukti_transaksi) }}"
+                                     class="img-thumbnail img-bukti"
+                                     width="70"
+                                     alt="Bukti">
                             </a>
                         @else
                             <span class="text-muted">Belum ada</span>
@@ -146,13 +75,13 @@
     </div>
 
     {{-- Pagination --}}
-<div class="d-flex justify-content-center mt-4">
-    {{ $bookings->links() }}
-</div>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $bookings->links() }}
+    </div>
 
-{{-- Info jumlah data --}}
-<div class="text-center text-muted small mt-2">
-    Menampilkan {{ $bookings->firstItem() }} - {{ $bookings->lastItem() }} dari total {{ $bookings->total() }} pemesanan
+    {{-- Info jumlah data --}}
+    <div class="text-center text-muted small mt-2">
+        Menampilkan {{ $bookings->firstItem() }} - {{ $bookings->lastItem() }} dari total {{ $bookings->total() }} pemesanan
+    </div>
 </div>
-</div>
-@endsection 
+@endsection
