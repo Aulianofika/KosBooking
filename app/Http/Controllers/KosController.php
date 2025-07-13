@@ -28,6 +28,7 @@ class KosController extends Controller
             'harga' => 'required|numeric',
             'tipe_penghuni' => 'required|in:Putra,Putri,Campur',
             'no_telp' => 'required|string|max:20',
+            'no_rekening' => 'required|string|max:20',
             'fasilitas' => 'nullable|string',
             'gambar_utama' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -41,6 +42,7 @@ class KosController extends Controller
             'harga' => $request->harga,
             'tipe_penghuni' => $request->tipe_penghuni,
             'no_telp' => $request->no_telp,
+            'no_rekening' => $request->no_rekening,
             'fasilitas' => $request->fasilitas,
             'gambar_utama' => $gambar_utama,
         ]);
@@ -65,6 +67,7 @@ class KosController extends Controller
             'harga' => 'required|numeric',
             'tipe_penghuni' => 'required|in:Putra,Putri,Campur',
             'no_telp' => 'required|string|max:20',
+            'no_rekening' => 'required|string|max:20',
             'fasilitas' => 'nullable|string',
             'gambar_utama' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -83,6 +86,7 @@ class KosController extends Controller
             'harga' => $request->harga,
             'tipe_penghuni' => $request->tipe_penghuni,
             'no_telp' => $request->no_telp,
+            'no_rekening' => $request->no_rekening,
             'fasilitas' => $request->fasilitas,
             'gambar_utama' => $kos->gambar_utama,
         ]);

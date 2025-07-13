@@ -131,13 +131,14 @@
             </li>
             @auth
               @if(auth()->user()->role === 'user')
-                <li class="nav-item">
-                  <a class="nav-link {{ request()->routeIs('riwayat.booking') ? 'active' : '' }}" href="{{ route('riwayat.booking') }}"><i class="bi bi-clock-history me-1"></i> Riwayat</a>
-                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link {{ request()->routeIs('explore.kos') ? 'active' : '' }}" href="{{ route('explore.kos') }}">
                     <i class="bi bi-compass me-1"></i> Jelajah Kos
                   </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ request()->routeIs('riwayat.booking') ? 'active' : '' }}" href="{{ route('riwayat.booking') }}"><i class="bi bi-clock-history me-1"></i> Riwayat</a>
                 </li>
               @endif
               <li class="nav-item dropdown">

@@ -52,6 +52,10 @@
 
         {{-- Kolom kanan --}}
         <div class="space-y-4">
+            <div class="mb-3">
+                <label for="no_rekening" class="form-label">No Rekening</label>
+                <input type="text" class="form-control" name="no_rekening" id="no_rekening" value="{{ old('no_rekening', $kos->no_rekening ?? '') }}">
+            </div>
             <div>
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
                 <textarea name="deskripsi" id="deskripsi" rows="3"

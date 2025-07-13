@@ -9,7 +9,7 @@ class AuliaKos extends Model
 
     protected $fillable = [
         'nama_kos', 'alamat', 'deskripsi', 'harga',
-        'tipe_penghuni', 'no_telp', 'fasilitas', 'gambar_utama'
+        'tipe_penghuni', 'no_telp','no_rekening', 'fasilitas', 'gambar_utama',
     ];
 
     public function kamar()

@@ -52,8 +52,8 @@
                 <div class="card-body">
                     <h6 class="fw-bold mb-3 border-bottom pb-2 text-purple">Detail Pemilik</h6>
                     <p><i class="bi bi-person-fill me-2"></i> <strong>Nama:</strong> {{ $kos->nama_kos }}</p>
-                    <p><i class="bi bi-geo-alt-fill me-2"></i> <strong>Alamat:</strong> {{ $kos->pemilik->alamat ?? '-' }}</p>
-                    <p><i class="bi bi-telephone-fill me-2"></i> <strong>No. HP:</strong> {{ $kos->no_telp }}</p>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i> <strong>No. HP :</strong> {{ $kos->no_telp }}</p>
+                    <p><i class="bi bi-telephone-fill me-2"></i> <strong>No. Rekening:</strong> {{ $kos->no_rekening }}</p>
                 </div>
             </div>
 
