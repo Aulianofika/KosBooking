@@ -4,8 +4,39 @@
 
 @section('content')
 <div class="container py-5">
-  <h2 class="text-center section-title mb-4">🧭 Jelajahi Semua Kos</h2>
+  <h2 class="text-center section-title mb-5"> Jelajahi Semua Kos</h2>
+<!-- Form Pencarian -->
+<div class="p-4 bg-light rounded-4 shadow-sm border mb-5">
+    <form method="GET" action="{{ route('kos.index') }}" class="row g-3 align-items-end">
+        <!-- Kolom Input Keyword -->
+        <div class="col-md-6">
+            <label for="keyword" class="form-label fw-semibold text-secondary">Cari Kos</label>
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                <input type="text" name="keyword" id="keyword"
+                    class="form-control border-start-0 rounded-end"
+                    placeholder="Nama / Alamat kos..." value="{{ request('keyword') }}">
+            </div>
+        </div>
 
+        <!-- Kolom Pilihan Tipe Penghuni -->
+        <div class="col-md-4">
+            <label for="tipe_penghuni" class="form-label fw-semibold text-secondary">Kategori</label>
+            <select name="tipe_penghuni" id="tipe_penghuni" class="form-select">
+                <option value="">-- Semua Tipe --</option>
+                <option value="Putra" {{ request('tipe_penghuni') == 'Putra' ? 'selected' : '' }}>Putra</option>
+                <option value="Putri" {{ request('tipe_penghuni') == 'Putri' ? 'selected' : '' }}>Putri</option>
+                <option value="Campur" {{ request('tipe_penghuni') == 'Campur' ? 'selected' : '' }}>Campur</option>
+            </select>
+        </div>
+        <!-- Kolom Tombol Cari -->
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-ungu w-100 fw-semibold rounded-3 shadow-sm">
+                <i class="bi bi-search me-1"></i> Cari
+            </button>
+        </div>
+    </form>
+</div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     @forelse($kos as $item)
       <div class="col">

@@ -37,7 +37,7 @@
 <div class="p-4 bg-light rounded-4 shadow-sm border mb-5">
     <form method="GET" action="{{ route('kos.index') }}" class="row g-3 align-items-end">
         <!-- Kolom Input Keyword -->
-        <div class="col-md-5">
+        <div class="col-md-6">
             <label for="keyword" class="form-label fw-semibold text-secondary">Cari Kos</label>
             <div class="input-group">
                 <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
@@ -48,7 +48,7 @@
         </div>
 
         <!-- Kolom Pilihan Tipe Penghuni -->
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label for="tipe_penghuni" class="form-label fw-semibold text-secondary">Kategori</label>
             <select name="tipe_penghuni" id="tipe_penghuni" class="form-select">
                 <option value="">-- Semua Tipe --</option>
@@ -122,7 +122,7 @@
         <i class="bi bi-journal-text fs-2 text-purple mb-3"></i>
         <h5 class="fw-bold">Buat Pemesanan</h5>
         <p class="text-muted">Pilih kos yang kamu suka, isi formulir pemesanan dan tunggu konfirmasi admin.</p>
-        <a href="#kos" class="btn btn-outline-purple btn-sm rounded-pill mt-2">
+        <a href="{{ route('explore.kos') }}" class="btn btn-outline-purple btn-sm rounded-pill mt-2">
           <i class="bi bi-pencil-square me-1"></i> Pesan Sekarang
         </a>
       </div>

@@ -99,8 +99,22 @@
             <div class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     @if($kamar->galleries && count($kamar->galleries))
-                        <img src="{{ asset('storage/' . $kamar->galleries[0]->gambar) }}" class="card-img-top" style="height: 180px; object-fit: cover;" alt="Foto Kamar">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#gambarModal{{ $kamar->id }}">
+                            <img src="{{ asset('storage/' . $kamar->galleries[0]->gambar) }}" 
+                                class="card-img-top" style="height: 180px; object-fit: cover; cursor: zoom-in;" 
+                                alt="Foto Kamar">
+                        </a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="gambarModal{{ $kamar->id }}" tabindex="-1" aria-labelledby="gambarModalLabel{{ $kamar->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border-0">
+                            <img src="{{ asset('storage/' . $kamar->galleries[0]->gambar) }}" class="img-fluid rounded" alt="Foto Kamar Besar">
+                            </div>
+                        </div>
+                        </div>
                     @endif
+
                     <div class="card-body d-flex flex-column">
                         <h6 class="fw-semibold">{{ $kamar->nama_kamar }}</h6>
                         <p class="text-muted small mb-1">{{ $kamar->deskripsi }}</p>

@@ -145,12 +145,10 @@
                 <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                <li><span class="dropdown-item-text small">Role: {{ Auth::user()->role }}</span></li>
-                <li><hr class="dropdown-divider"></li>
-              </li>
+                
             <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="dropdown-item text-danger">
+                    <button class="dropdown-item text-purple">
                       <i class="bi bi-box-arrow-right me-1"></i> Logout
                     </button>
                   </form>
@@ -174,7 +172,7 @@
     <div class="container">
       <h1>Selamat Datang di BookingKos.id 💜</h1>
       <p>Temukan kos terbaikmu dengan nyaman dan cepat</p>
-      <a href="#kos" class="btn btn-ungu mt-3 px-4 py-2">
+      <a href="{{ route('explore.kos') }}" class="btn btn-ungu mt-3 px-4 py-2">
         <i class="bi bi-search me-1"></i> Mulai Cari
       </a>
     </div>
