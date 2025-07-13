@@ -50,7 +50,7 @@
         <div class="col-md-6">
             <div class="card mb-3 shadow-sm">
                 <div class="card-body">
-                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-success">Detail Pemilik</h6>
+                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-purple">Detail Pemilik</h6>
                     <p><i class="bi bi-person-fill me-2"></i> <strong>Nama:</strong> {{ $kos->nama_kos }}</p>
                     <p><i class="bi bi-geo-alt-fill me-2"></i> <strong>Alamat:</strong> {{ $kos->pemilik->alamat ?? '-' }}</p>
                     <p><i class="bi bi-telephone-fill me-2"></i> <strong>No. HP:</strong> {{ $kos->no_telp }}</p>
@@ -59,7 +59,7 @@
 
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-success">Detail Kos</h6>
+                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-purple">Detail Kos</h6>
                     <p><strong>Deskripsi:</strong> {{ $kos->deskripsi }}</p>
                     <p><strong>Alamat:</strong> {{ $kos->alamat }}</p>
                     <p><strong>Tipe Penghuni:</strong> 
@@ -67,7 +67,7 @@
                             {{ $kos->tipe_penghuni }}
                         </span>
                     </p>
-                    <p><strong>Harga:</strong> <span class="text-success fw-semibold">Rp{{ number_format($kos->harga, 0, ',', '.') }}/bulan</span></p>
+                    <p><strong>Harga:</strong> <span class="text-purple fw-semibold">Rp{{ number_format($kos->harga, 0, ',', '.') }}/bulan</span></p>
 
                     @if($kos->fasilitas)
                         <p class="fw-bold mb-2">Fasilitas:</p>
@@ -78,7 +78,7 @@
                                     $icon = $icons[$fas] ?? 'bi-check-circle';
                                 @endphp
                                 <div class="d-flex align-items-center gap-2">
-                                    <i class="bi {{ $icon }} text-success"></i>
+                                    <i class="bi {{ $icon }} text-purple"></i>
                                     <span>{{ ucfirst($fas) }}</span>
                                 </div>
                             @endforeach
@@ -93,7 +93,7 @@
     <hr class="my-5" style="border-top: 3px solid #198754;">
 
     {{-- Kamar --}}
-    <h4 class="fw-bold text-success mb-4">Kamar Tersedia</h4>
+    <h4 class="fw-bold text-purple mb-4">Kamar Tersedia</h4>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @forelse($kos->kamar as $kamar)
             <div class="col">
@@ -104,16 +104,14 @@
                     <div class="card-body d-flex flex-column">
                         <h6 class="fw-semibold">{{ $kamar->nama_kamar }}</h6>
                         <p class="text-muted small mb-1">{{ $kamar->deskripsi }}</p>
-                        <p class="text-success fw-bold mb-2">Rp{{ number_format($kamar->harga, 0, ',', '.') }}/bulan</p>
+                        <p class="text-purple fw-bold mb-2">Rp{{ number_format($kamar->harga, 0, ',', '.') }}/bulan</p>
 
-                        <span class="badge bg-{{ $kamar->status === 'tersedia' ? 'success' : 'secondary' }} mb-2">
-                            {{ ucfirst($kamar->status) }}
-                        </span>
+                        
 
                         @auth
                             @if(auth()->user()->role === 'user' && $kamar->status === 'tersedia')
                                 <!-- Tombol Pesan Sekarang -->
-                                <button class="btn btn-sm btn-outline-success mt-auto" data-bs-toggle="modal" data-bs-target="#modalBooking{{ $kamar->id }}">
+                                <button class="btn btn-sm btn-outline-purple mt-auto" data-bs-toggle="modal" data-bs-target="#modalBooking{{ $kamar->id }}">
                                     Pesan Sekarang
                                 </button>
                             @endif
@@ -155,7 +153,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Kirim Pemesanan</button>
+                <button type="submit" class="btn btn-purple">Kirim Pemesanan</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
             </div>
             </form>
