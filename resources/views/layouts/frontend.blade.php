@@ -134,6 +134,11 @@
                 <li class="nav-item">
                   <a class="nav-link {{ request()->routeIs('riwayat.booking') ? 'active' : '' }}" href="{{ route('riwayat.booking') }}"><i class="bi bi-clock-history me-1"></i> Riwayat</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ request()->routeIs('explore.kos') ? 'active' : '' }}" href="{{ route('explore.kos') }}">
+                    <i class="bi bi-compass me-1"></i> Jelajah Kos
+                  </a>
+                </li>
               @endif
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">

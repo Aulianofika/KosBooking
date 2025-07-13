@@ -14,11 +14,15 @@ use App\Http\Controllers\UserKosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KamarGalleryController;
 use App\Http\Controllers\AdminPemesananController;
+use App\Http\Controllers\KosExploreController;
 
 //homepage
 Route::get('/', [UserKosController::class, 'index'])->name('homepage');
 Route::get('/kos/{id}', [UserKosController::class, 'show'])->name('kos.detail');
 Route::get('/kos', [UserKosController::class, 'index'])->name('kos.index');
+Route::get('/jelajah-kos', [KosExploreController::class, 'index'])->name('explore.kos');
+
+
 
 //auth
 // Form register
